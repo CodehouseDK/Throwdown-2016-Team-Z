@@ -1,13 +1,10 @@
 var path = require("path");
 var webpack = require("webpack");
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
-
 
 module.exports = {
     output: {
         path: path.resolve(__dirname, "wwwroot/scripts"),
         filename: "bundle.js",
-
     },
     entry: {
         app: path.resolve(__dirname, "wwwroot/scripts/app.js")
@@ -25,7 +22,7 @@ module.exports = {
             },
             {
                 test: /\.(scss|sass|css)$/,
-                loader: ExtractTextPlugin.extract("style", "css!sass")
+                loader:"style!css!sass"
             },
             {
                 test: /\.hbs$/,
@@ -42,8 +39,7 @@ module.exports = {
             }
         ]
     },
-    plugins: [
-        new ExtractTextPlugin("../../wwwroot/style/bundle.css"),
+    plugins: [        
         new webpack.DefinePlugin({ 'require.specified': 'require.resolve' }),
         
     ]
